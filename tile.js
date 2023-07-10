@@ -11,7 +11,7 @@ class Tile {
 
     show() {
 
-        FileList(this.color);
+        Fill(this.color);
         rect(this.x, this.y, this.sq, this.sq);
 
     }
