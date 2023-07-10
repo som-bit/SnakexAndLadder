@@ -1,4 +1,4 @@
-export  class Tile {
+class Tile {
 
     constructor(x, y, sq, next) {
         this.x = x

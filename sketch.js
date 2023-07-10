@@ -1,4 +1,3 @@
-import { Tile } from './tile.js';
 
 let tiles = [];
 
