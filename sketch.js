@@ -6,33 +6,26 @@ let player;
 
 
 function setup() {
-    createCanvas(400, 400)
+    createCanvas(400, 400);
 
-    let resolution = 100;
+    // Size of tile, columns and rows
+    let resolution = 40;
     let cols = width / resolution;
     let rows = height / resolution;
-    let dir = 1;
+
+    // Create all the tiles from bottom to top
     let x = 0;
     let y = (rows - 1) * resolution;
-
-    for (i = 0; i < cols * rows; i++) {
-        let tile = new Tile(x, y, resolution, i + 1);
-        console.log('reached here');
-
+    let dir = 1;
+    for (let i = 0; i < cols * rows; i++) {
+        let tile = new Tile(x, y, resolution, i, i + 1);
         tiles.push(tile);
-        x = x + (resolution * dir);
-        if (x >= width) {
-            x -= resolution;
-            y -= resolution;
+        x = x + resolution * dir;
+        // Move along a winding path up the rows
+        if (x >= width || x <= -resolution) {
             dir *= -1;
-        }
-
-        if (x <= 0) {
-
-            x = resolution;
+            x += resolution * dir;
             y -= resolution;
-            dir *= -1;
-
         }
     }
 }
