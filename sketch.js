@@ -18,7 +18,7 @@ function setup() {
     let y = (rows - 1) * resolution;
     let dir = 1;
     for (let i = 0; i < cols * rows; i++) {
-        let tile = new Tile(x, y, resolution, i, i + 1);
+        let tile = new Tile(x, y, resolution, i, i + 1,);
         tiles.push(tile);
         x = x + resolution * dir;
         // Move along a winding path up the rows
@@ -28,11 +28,23 @@ function setup() {
             y -= resolution;
         }
     }
+    player = new Player();
 }
 
 function draw() {
-    background(31)
+    background(51)
     for (let tile of tiles) {
         tile.show();
     }
+
+
+
+    if (player.spot >= tiles.length - 1) {
+        player.spot = tiles.length - 1;
+        console.log("GAME OVER");
+        noLoop();
+    }
+
+    player.show(tiles);
+    player.roll();
 }
